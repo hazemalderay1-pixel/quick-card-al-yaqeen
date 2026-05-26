@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const nameStyle = {
         fontFamily: "Cairo",
         fontSize: 30,
-        xPercent: 40,
+        xPercent: 48,
         yPercent: 43,
         color: "#000000",
         width: 0,
