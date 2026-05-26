@@ -47,12 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // الإعدادات البصرية الموحدة لكل البطاقات
     const nameStyle = {
         fontFamily: "Cairo",
-        fontSize: 18,
+        fontSize: 30,
         xPercent: 40,
         yPercent: 43,
-        color: "#FFFFFF",
+        color: "#000000",
         width: 0,
-        height: 18
+        height: 30
     };
 
     // --- تحميل قوالب البطاقات المربعة ---
@@ -259,24 +259,18 @@ document.addEventListener("DOMContentLoaded", () => {
         // ضبط إعدادات الخط
         let activeFontSize = nameStyle.fontSize;
         ctx.font = `bold ${activeFontSize}px "${nameStyle.fontFamily}", Cairo, sans-serif`;
-        ctx.textAlign = "center";
+        ctx.textAlign = "right";
         ctx.textBaseline = "middle";
 
         // حساب الحجم التلقائي للخط لمنع التجاوز عن أبعاد الكارت (1080)
         let measuredWidth = ctx.measureText(displayText).width;
         const maxWidth = cardCanvas.width * 0.9; // حد أقصى 90% من عرض الكارد
         
-        while (measuredWidth > maxWidth && activeFontSize > 18) {
+        while (measuredWidth > maxWidth && activeFontSize > 10) {
             activeFontSize -= 2;
             ctx.font = `bold ${activeFontSize}px "${nameStyle.fontFamily}", Cairo, sans-serif`;
             measuredWidth = ctx.measureText(displayText).width;
         }
-
-        // تأثير الظل الفاخر للاسم
-        ctx.shadowColor = "rgba(0, 0, 0, 0.4)";
-        ctx.shadowBlur = 8;
-        ctx.shadowOffsetX = 2;
-        ctx.shadowOffsetY = 2;
 
         // حساب الإحداثيات الفعلية
         const x = (nameStyle.xPercent / 100) * cardCanvas.width;
@@ -377,8 +371,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const padding = 40; 
 
         return (
-            clickX >= x - (nameStyle.width || 100) / 2 - padding &&
-            clickX <= x + (nameStyle.width || 100) / 2 + padding &&
+            clickX >= x - (nameStyle.width || 100) - padding &&
+            clickX <= x + padding &&
             clickY >= y - (nameStyle.height || 40) / 2 - padding &&
             clickY <= y + (nameStyle.height || 40) / 2 + padding
         );
