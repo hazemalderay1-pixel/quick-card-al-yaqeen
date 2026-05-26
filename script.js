@@ -47,12 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // الإعدادات البصرية الموحدة لكل البطاقات
     const nameStyle = {
         fontFamily: "Cairo",
-        fontSize: 40,
-        xPercent: 66,
-        yPercent: 75,
+        fontSize: 18,
+        xPercent: 40,
+        yPercent: 43,
         color: "#FFFFFF",
         width: 0,
-        height: 40
+        height: 18
     };
 
     // --- تحميل قوالب البطاقات المربعة ---
