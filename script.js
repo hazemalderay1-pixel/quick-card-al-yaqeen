@@ -227,12 +227,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function drawCardWithName(nameText) {
         const activeImg = images[currentTemplate];
         
-        // مسح الكانفاس ورسم الصورة الخلفية
-        ctx.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-        
         if (activeImg.complete && activeImg.naturalWidth !== 0) {
+            // تحديث أبعاد الكانفاس لتطابق أبعاد الصورة الحقيقية تلقائياً
+            if (cardCanvas.width !== activeImg.naturalWidth || cardCanvas.height !== activeImg.naturalHeight) {
+                cardCanvas.width = activeImg.naturalWidth;
+                cardCanvas.height = activeImg.naturalHeight;
+            }
             ctx.drawImage(activeImg, 0, 0, cardCanvas.width, cardCanvas.height);
         } else {
+            ctx.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
             ctx.fillStyle = document.body.classList.contains("dark-mode") ? "#121212" : "#f3f4f6";
             ctx.fillRect(0, 0, cardCanvas.width, cardCanvas.height);
             ctx.fillStyle = document.body.classList.contains("dark-mode") ? "#ffffff" : "#000000";
